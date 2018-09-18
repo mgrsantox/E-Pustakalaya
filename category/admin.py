@@ -8,7 +8,7 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ('first_name', 'last_name')
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author')
+    list_display = ('title', 'author', 'display_genre')
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     pass
