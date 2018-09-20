@@ -14,7 +14,7 @@ def index(request):
     my_instances_available = BookInstance.objects.filter(status__exact='a').count()
 
 
-    my_authors = Author.objects
+    my_authors = Author.objects.count()
 
     my_queryset ={
         'my_books':my_books,
