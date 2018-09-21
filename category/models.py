@@ -12,7 +12,7 @@ class Author(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular author instance."""
-        return reverse('author-detail', args=[str(self.id)])
+        return reverse('author_detail', args=[str(self.id)])
     def date_of_birth_preety(self):
         return self.date_of_birth.strftime('%b %e, %Y')
 
@@ -42,6 +42,7 @@ class Book(models.Model):
                             max_length=13,
                             help_text='enter the 13 numbers ISBN')
     genre = models.ManyToManyField(Genre, help_text='Enter the Genre of the book')
+    language = models.CharField(max_length=200, default='English')
 
 
 
@@ -50,13 +51,17 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('book_detail', args=[str(self.isbn)])
 
     def display_genre(self):
         """Create a string for the Genre. This is required to display genre in Admin."""
         return ', '.join(genre.name for genre in self.genre.all()[:3])
 
     display_genre.short_description = 'Genre'
+
+    def get_author_url(self):
+         """Returns the url to access a particular author instance."""
+         return reverse('author_detail', args=[str(self.id)])
 
 
 

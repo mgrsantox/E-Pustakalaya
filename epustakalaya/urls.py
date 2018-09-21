@@ -22,7 +22,7 @@ from category.views import main_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/category/')),
+    #path('', RedirectView.as_view(url='/category/')),
     path('', main_index, name='index'),
     path('category/', include('category.urls')),
 
