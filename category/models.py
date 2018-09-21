@@ -40,6 +40,7 @@ class Book(models.Model):
                             max_length=13,
                             help_text='enter the 13 numbers ISBN')
     genre = models.ManyToManyField(Genre, help_text='Enter the Genre of the book')
+    language = models.CharField(max_length=200)
 
 
 
