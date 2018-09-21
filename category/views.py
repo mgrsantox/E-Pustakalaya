@@ -32,12 +32,13 @@ class BookListView(generic.ListView):
     context_object_name = 'book_list'
     queryset = Book.objects.all() #.filter(title__icontains='two')[:5] # Get 5 books containing the title two
     template_name = 'books/book_list.html'
-'''
-def book_detail(request):
-    book = get_object_or_404(Book)
+
+def book_detail(request, isbn):
+    book = get_object_or_404(Book, isbn=isbn,)
     return render(request, 'books/book_detail.html', context={'book':book})
 '''
 class BookDetailView(generic.DetailView):
     context_object_name = 'book'
     model = Book
     template_name = 'books/book_detail.html'
+'''
