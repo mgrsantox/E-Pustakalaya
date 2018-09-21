@@ -75,7 +75,7 @@ class BookInstance(models.Model):
         ('m', 'Maintance'),
         ('o', 'On Loan'),
         ('a', 'Availabe'),
-        ('r', 'Reverse'),
+        ('r', 'Reserved'),
     )
     status = models.CharField(
         max_length=1,
