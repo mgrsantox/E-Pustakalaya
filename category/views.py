@@ -43,3 +43,14 @@ class BookDetailView(generic.DetailView):
     model = Book
     template_name = 'books/book_detail.html'
 '''
+
+class AuthorListView(generic.ListView):
+    model = Author
+    context_object_name = 'author_list'
+    queryset = Author.objects.all()
+    template_name = 'authors/author_list.html'
+
+class AuthorDetailView(generic.DetailView):
+    context_object_name = 'author'
+    model = Author
+    template_name = 'authors/author_detail.html'

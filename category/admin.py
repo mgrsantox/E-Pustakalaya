@@ -5,7 +5,7 @@ from .models import BookInstance, Book, Genre, Author
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth')
-    fields = ('first_name', 'last_name')
+    fields = ('first_name', 'last_name', 'date_of_birth')
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre')
