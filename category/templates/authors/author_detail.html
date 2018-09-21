@@ -2,8 +2,8 @@
 {% block content %}
     <div style="margin-top:20px;">
         <h1> <span style="color:black;"> Author:</span>{{author.last_name}}&nbsp;{{ author.first_name }}</h1>
-        {{author.date_of_birth_preety}}
-
+        {{author.date_of_birth_preety}} <br>
+        <img src="{{ author.profile_pic.url }}" style="border-radius: 50%;" alt="image" width="30%;">
         <div style="margin-left:20px;margin-top:20px">
 <h4>Books</h4>
 

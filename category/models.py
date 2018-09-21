@@ -5,6 +5,7 @@ import uuid
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    profile_pic = models.ImageField(upload_to='images/authors/', default='image')
     date_of_birth = models.DateTimeField(null=True, blank=True)
 
     class Meta:
@@ -37,6 +38,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author',
                                on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to='images/books/', default='image')
     summery = models.TextField(max_length=1000, help_text='description of book')
     isbn = models.CharField('ISBN',
                             max_length=13,

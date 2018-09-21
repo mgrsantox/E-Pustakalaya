@@ -3,7 +3,8 @@
   <h1>Title: {{ book.title }}</h1>
 
   <p><strong>Author:</strong> <a href="{{ book.get_author_url }}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Summary:</strong> {{ book.summery }}</p>
+<img src="{{ book.image.url }}" alt="image" width="30%;">
+<p><strong>Summary:</strong> {{ book.summery }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>
   <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
