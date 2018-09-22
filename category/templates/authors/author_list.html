@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div style="margin-top:30px;">
+<div style="margin-top:30px;"> {% for author in author_list %}
     <div class="list-group" style="margin-bottom:20px;">
-     {% for author in author_list %}
+
   <a href="{{ author.get_absolute_url }}" class="list-group-item list-group-item-action" style="margin-bottom:20px;">
    {{author.last_name}} &nbsp;{{ author.first_name }}
   </a>

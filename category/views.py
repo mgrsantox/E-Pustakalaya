@@ -17,11 +17,15 @@ def index(request):
 
     my_authors = Author.objects.count()
 
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     my_queryset ={
         'my_books':my_books,
         'my_instances':my_instances,
         'my_instances_available':my_instances_available,
         'my_authors':my_authors,
+        'num_visits':num_visits,
     }
 
     return render(request, 'index.html', context=my_queryset)
@@ -30,7 +34,7 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     context_object_name = 'book_list'
-    paginate_by = 2 #more than 2 records the view will start paginating
+    paginate_by = 4 #more than 2 records the view will start paginating
     queryset = Book.objects.all() #.filter(title__icontains='two')[:5] # Get 5 books containing the title two
     template_name = 'books/book_list.html'
 
