@@ -33,10 +33,14 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href=""> {{ user.get_username|capfirst }}</a>
+                <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""> ({{ user.get_username|capfirst }})</a>
+            </li>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>

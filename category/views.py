@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import BookInstance, Book, Author
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #this is not used in project ...its only test
 def main_index(request):
@@ -38,6 +39,7 @@ class BookListView(generic.ListView):
     queryset = Book.objects.all() #.filter(title__icontains='two')[:5] # Get 5 books containing the title two
     template_name = 'books/book_list.html'
 
+
 def book_detail(request, isbn):
     book = get_object_or_404(Book, isbn=isbn,)
     return render(request, 'books/book_detail.html', context={'book':book})
@@ -58,3 +60,13 @@ class AuthorDetailView(generic.DetailView):
     context_object_name = 'author'
     model = Author
     template_name = 'authors/author_detail.html'
+
+
+class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+    model = BookInstance
+    template_name = 'book_borrowed_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
