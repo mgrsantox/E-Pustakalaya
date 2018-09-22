@@ -15,6 +15,14 @@
 </dl>
 
 </div>
+    {% if request.user.is_superuser %}
+        <a href="{% url 'author_update' author.pk %}">
+            <input type="reset" value="Edit Author">
+        </a>
+        <a href="{% url 'author_delete' author.pk %}">
+            <input type="reset" value="Delete Author">
+        </a>
+        {%endif%}
     </div>
 
 {% endblock %}

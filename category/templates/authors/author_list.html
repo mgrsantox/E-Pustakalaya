@@ -9,5 +9,11 @@
 
 </div>
 {% endfor %}
+
+    {% if request.user.is_superuser %}
+        <a href="{% url 'author_create' %}">
+            <input type="reset" value="Create New Author">
+        </a>
+        {%endif%}
 </div>
 {% endblock %}

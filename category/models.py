@@ -3,6 +3,8 @@ from django.urls import reverse
 import uuid
 from datetime import date
 from django.contrib.auth.models import User
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -21,6 +23,8 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+
+    permissions = (("can_mark_returned", "Allowed"),)
 
 #Genre Model
 
@@ -98,6 +102,7 @@ class BookInstance(models.Model):
 
     class Meta:
         ordering = ['-due_back']
+        permissions = (("can_mark_returned", "Set book as returned"),)
 
     @property
     def is_overdue(self):
@@ -108,3 +113,16 @@ class BookInstance(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
+'''
+@receiver(post_delete, sender=Author)
+def submission_delete(sender, instance, **kwargs):
+    instance.profile_pic.delete(False)
+    '''
+
+def save(self, *args, **kwargs):
+    try:
+        this = Author.objects.get(id=self.id)
+        if this.profile_pic != self.profile_pic:
+            this.profile_pic.delete()
+    except: pass
+    super(Author, self).save(*args, **kwargs)
