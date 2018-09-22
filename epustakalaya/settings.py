@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+LOGIN_REDIRECT_URL = '/category'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 INSTALLED_APPS = [
     'category.apps.CategoryConfig',
     'django.contrib.admin',

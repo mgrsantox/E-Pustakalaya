@@ -29,6 +29,19 @@
         <a class="nav-link" href="{% url 'authors' %}">Authors</a>
       </li>
         </ul>
+
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href=""> {{ user.get_username|capfirst }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        </ul>
+        {% endif %}
     </div>
     </nav>
      {% endblock %}

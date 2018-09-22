@@ -26,6 +26,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/category/')),
     path('', main_index, name='index'),
     path('category/', include('category.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]
 urlpatterns += staticfiles_urlpatterns()
