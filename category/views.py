@@ -154,3 +154,30 @@ class AuthorDelete(PermissionRequiredMixin, generic.DeleteView):
     permission_required = 'category.can_mark_returned'
     success_url = reverse_lazy('authors')
     template_name = 'authors/author_confirm_delete.html'
+
+
+from django.urls import reverse_lazy
+
+from .models import Book
+
+class BookCreate(PermissionRequiredMixin, generic.CreateView):
+    model = Book
+    permission_required = 'category.can_mark_returned'
+    fields = '__all__'
+    template_name = 'books/book_form.html'
+    success_url = reverse_lazy('index')
+
+class BookUpdate(PermissionRequiredMixin, generic.UpdateView):
+    model = Book
+    permission_required = 'category.can_mark_returned'
+    fields = '__all__'
+    template_name = 'books/book_edit.html'
+
+
+    
+    
+class BookDelete(PermissionRequiredMixin, generic.DeleteView):
+    model = Book
+    permission_required = 'category.can_mark_returned'
+    success_url = reverse_lazy('books')
+    template_name = 'books/book_confirm_delete.html'
