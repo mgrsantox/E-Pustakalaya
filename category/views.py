@@ -172,6 +172,8 @@ class BookUpdate(PermissionRequiredMixin, generic.UpdateView):
     permission_required = 'category.can_mark_returned'
     fields = '__all__'
     template_name = 'books/book_edit.html'
+    def get_object(self):
+        return Book.objects.get(isbn=self.kwargs.get("isbn"))
 
 
     
@@ -181,3 +183,5 @@ class BookDelete(PermissionRequiredMixin, generic.DeleteView):
     permission_required = 'category.can_mark_returned'
     success_url = reverse_lazy('books')
     template_name = 'books/book_confirm_delete.html'
+    def get_object(self):
+        return Book.objects.get(isbn=self.kwargs.get("isbn"))
