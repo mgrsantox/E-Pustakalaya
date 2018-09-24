@@ -26,6 +26,10 @@ class Author(models.Model):
 
     permissions = (("can_mark_returned", "Allowed"),)
 
+    # def get_author_url(self):
+    #      """Returns the url to access a particular author instance."""
+    #      return reverse('author_detail', args=[str(self.id)])
+
 #Genre Model
 
 class Genre(models.Model):
@@ -70,8 +74,8 @@ class Book(models.Model):
     display_genre.short_description = 'Genre'
 
     def get_author_url(self):
-         """Returns the url to access a particular author instance."""
-         return reverse('author_detail', args=[str(self.id)])
+        """Returns the url to access a particular author instance."""
+        return reverse('author_detail', args=[str(self.author.id)])
 
 
 

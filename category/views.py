@@ -35,7 +35,7 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     context_object_name = 'book_list'
-    paginate_by = 4 #more than 2 records the view will start paginating
+    paginate_by = 6 #more than 2 records the view will start paginating
     queryset = Book.objects.all() #.filter(title__icontains='two')[:5] # Get 5 books containing the title two
     template_name = 'books/book_list.html'
 
