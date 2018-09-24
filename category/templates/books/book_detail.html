@@ -21,5 +21,14 @@
       <p><strong>Imprint:</strong> {{copy.imprint}}</p>
       <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
     {% endfor %}
+
+    {% if request.user.is_superuser %}
+        <a href="{% url 'book_update' book.isbn %}">
+            <input type="reset" value="Edit Book">
+        </a>
+        <a href="{% url 'book_delete' book.isbn %}">
+            <input type="reset" value="Delete Book">
+        </a>
+        {%endif%}
   </div>
 {% endblock %}
