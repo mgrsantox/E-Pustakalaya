@@ -9,7 +9,8 @@ urlpatterns=[
 # Books UrlConfig
 urlpatterns +=[
     path('books/', views.BookListView.as_view(), name='books'),
-    path('books/<int:isbn>/', views.book_detail, name='book_detail'),
+    path('books/<int:isbn>/', views.BookDetailView.as_view(), name='book_detail'),
+    # path('books/<int:isbn>/', views.book_detail, name='book_detail'),
     path('books/create/', views.BookCreate.as_view(), name='book_create'),
     path('books/<int:isbn>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('books/<int:isbn>/delete/', views.BookDelete.as_view(), name='book_delete'),

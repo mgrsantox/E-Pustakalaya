@@ -40,15 +40,18 @@ class BookListView(generic.ListView):
     template_name = 'books/book_list.html'
 
 
-def book_detail(request, isbn):
-    book = get_object_or_404(Book, isbn=isbn,)
-    return render(request, 'books/book_detail.html', context={'book':book})
-'''
+# def book_detail(request, isbn):
+#     book = get_object_or_404(Book, isbn=isbn,)
+#     return render(request, 'books/book_detail.html', context={'book':book})
+
 class BookDetailView(generic.DetailView):
+
+    def get_object(self):
+        return Book.objects.get(isbn=self.kwargs.get("isbn"))
     context_object_name = 'book'
     model = Book
+
     template_name = 'books/book_detail.html'
-'''
 
 class AuthorListView(generic.ListView):
     model = Author
